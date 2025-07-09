@@ -22,6 +22,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Verify build context
+      run: |
+        ls -la
+        if [ -f "Dockerfile" ]; then echo "Dockerfile found"; else echo "Dockerfile missing" && exit 1; fi
+
     - name: Log in to Container Registry
       uses: docker/login-action@v3
       with:
